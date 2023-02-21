@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 function EventsPage({ data }) {
   // console.log(data)
@@ -7,10 +8,10 @@ function EventsPage({ data }) {
       <h1>Events Page</h1>
 
       {data.map((event) => (
-        <a key={event.id} href={`/events/${event.id}`}>
+        <Link key={event.id} href={`/events/${event.id}`}>
           <Image src={event.image} alt={event.title} width={400} height={300} />
           <h2>{event.title}</h2>
-        </a>
+        </Link>
       ))}
     </div>
   );
