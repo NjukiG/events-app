@@ -5,7 +5,8 @@ import styles from "@/styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({title}) {
+export default function Home({ data }) {
+  // console.log(data)
   return (
     <>
       <Head>
@@ -23,47 +24,18 @@ export default function Home({title}) {
         </nav>
       </header>
       <main className={styles.main}>
-        <a href="">
-          <img />
-          <h2>Events in Nairobi</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </a>
-
-        <a href="">
-          <img />
-          <h2>Events in Mombasa</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </a>
-
-        <a href="">
-          <img />
-          <h2>Events in Kisumu</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </a>
+        {data.map((event) => (
+          <a key={event.id} href={`/events/${event.id}`}>
+            <Image
+              src={event.image}
+              alt={event.title}
+              width={200}
+              height={100}
+            />
+            <h2>{event.title}</h2>
+            <p>{event.description}</p>
+          </a>
+        ))}
       </main>
 
       <footer className={styles.footer}>
@@ -73,11 +45,12 @@ export default function Home({title}) {
   );
 }
 
-
-export function getServerSideProps(){
-  return{
-    props:{
-      title: "Hello Everyone!"
-    }
-  }
+export async function getServerSideProps() {
+  const { events_categories } = await import("/data/data.json");
+  console.log(events_categories);
+  return {
+    props: {
+      data: events_categories,
+    },
+  };
 }
