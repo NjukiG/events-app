@@ -7,7 +7,13 @@ const EventsCatPage = ({ data, pageName }) => {
       <h1>Events in {pageName}</h1>
 
       {data.map((event) => (
-        <Link key={event.id} href={`/events/${event.city}/${event.id}`} passHref>
+        <Link
+          legacyBehavior
+          key={event.id}
+          href={`/events/${event.city}/${event.id}`}
+          passHref
+        >
+          <a>
             <Image
               src={event.image}
               alt={event.title}
@@ -16,6 +22,7 @@ const EventsCatPage = ({ data, pageName }) => {
             />
             <h2>{event.title}</h2>
             <p>{event.description}</p>
+          </a>
         </Link>
       ))}
     </div>
