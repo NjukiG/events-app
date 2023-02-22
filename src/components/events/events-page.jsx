@@ -6,7 +6,7 @@ export const AllEvents = ({ data }) => {
     <div className="events_page">
       {data.map((event) => (
         <Link className="card" key={event.id} href={`/events/${event.id}`}>
-          <Image src={event.image} alt={event.title} width={400} height={300} />
+          <Image src={event.image} alt={event.title} width={450} height={400} />
           <h2>{event.title}</h2>
         </Link>
       ))}
