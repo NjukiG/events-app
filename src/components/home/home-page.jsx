@@ -6,7 +6,7 @@ export const HomePage = ({ data }) => {
     <main>
       {data.map((event) => (
         <Link key={event.id} href={`/events/${event.id}`}>
-          <Image src={event.image} alt={event.title} width={200} height={100} />
+          <Image src={event.image} alt={event.title} width={300} height={300} />
           <h2>{event.title}</h2>
           <p>{event.description}</p>
         </Link>
