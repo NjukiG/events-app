@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
+import { HomePage } from "@/components/home/home-page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,20 +25,7 @@ export default function Home({ data }) {
           <Link href="/events">Events</Link>
         </nav>
       </header>
-      <main className={styles.main}>
-        {data.map((event) => (
-          <Link key={event.id} href={`/events/${event.id}`}>
-            <Image
-              src={event.image}
-              alt={event.title}
-              width={200}
-              height={100}
-            />
-            <h2>{event.title}</h2>
-            <p>{event.description}</p>
-          </Link>
-        ))}
-      </main>
+      <HomePage data={data} />
 
       <footer className={styles.footer}>
         <p>2023 NextJS Practice App.</p>
