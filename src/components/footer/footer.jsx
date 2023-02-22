@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
-    <footer>
-      <p>2023 NextJS Practice App.</p>
+    <footer className="footer">
+      <p>© 2023 George N - NextJS Practice App.</p>
     </footer>
   );
 };

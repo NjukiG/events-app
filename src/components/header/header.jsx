@@ -4,21 +4,30 @@ import Image from "next/image";
 export const Header = () => {
   return (
     <header className="header">
-      <div className="top-nav">
-        <Image
-          alt="logo"
-          src="https://w7.pngwing.com/pngs/12/743/png-transparent-black-and-white-japanese-text-overlay-goku-t-shirt-dragon-ball-king-kai-art-kanji-text-logo-monochrome.png"
-          width={50}
-          height={50}
-        />
-        <nav>
-          <img />
-          <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
-          <Link href="/events">Events</Link>
-        </nav>
+      <div>
+        <div className="top-nav">
+          <Image
+            alt="logo"
+            src="https://www.kindpng.com/picc/m/86-860034_kame-kanji-dragon-ball-dragonball-goku-vegeta-muten.png"
+            width={50}
+            height={50}
+          />
+          <nav>
+            <ul>
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/about">About</Link>
+              </li>
+              <li>
+                <Link href="/events">Events</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <h2 className="title">Dragon Ball Events</h2>
       </div>
-      <h1>Dragon Ball Events</h1>
     </header>
   );
 };
