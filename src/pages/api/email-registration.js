@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 
 function buildPath() {
-  return path.join(process.cwd, "data", "data.json");
+  return path.join(process.cwd(), "data", "data.json");
 }
 
 function extractData(filePath) {
@@ -24,11 +24,25 @@ export default function handler(req, res) {
   if (method === "POST") {
     const { email, eventId } = req.body;
 
-    const newAllEvents = allEvents.map((event) =>{
-        if(event.id === eventId){
-            
+    const newAllEvents = allEvents.map((event) => {
+      if (event.id === eventId) {
+        if (event.emails_registered.includes(email)) {
+          res
+            .status(201)
+            .json({ message: "THis email is already registered!" });
         }
-    })
+        return {
+          ...event,
+          emails_registered: [...event.emails_registered, email],
+        };
+      }
+      return event;
+    });
+
+    fs.writeFileSync(
+      filePath,
+      JSON.stringify({ events_categories, allEvents: newAllEvents })
+    );
 
     res.status(200).json({
       message: `You have been registered successfully with the email: ${email} to the event ${eventId}`,
