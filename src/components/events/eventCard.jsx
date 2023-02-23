@@ -36,8 +36,9 @@ export const EventCard = ({ data }) => {
       }
       const data = await responce.json();
       setMessage(data.message);
+      inputEmail.current.value = '';
 
-      console.log("POST", data);
+      // console.log("POST", data);
     } catch (e) {}
   };
 
