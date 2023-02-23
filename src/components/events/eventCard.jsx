@@ -1,8 +1,16 @@
+import React, { useRef, useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 
 export const EventCard = ({ data }) => {
+  const inputEmail = useRef();
+  console.log(inputEmail);
+  const router = useRouter();
+  console.log(router)
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const emailValue = inputEmail.current.value;
   };
   return (
     <div className="event_single_page">
@@ -12,6 +20,7 @@ export const EventCard = ({ data }) => {
       <form className="email_registration" onSubmit={handleSubmit}>
         <label htmlFor="email">Register for this event:</label>
         <input
+          ref={inputEmail}
           type="email"
           className="form-control"
           id="email"
