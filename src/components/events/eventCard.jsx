@@ -8,11 +8,19 @@ export const EventCard = ({ data }) => {
   const router = useRouter();
   // console.log(router)
 
+  const [message, setMessage] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const emailValue = inputEmail.current.value;
     const eventId = router?.query.id;
     // console.log(eventId)
+    const validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (!emailValue.match(validRegex)) {
+      setMessage("Please introduce a correct email address");
+    }
 
     try {
       const responce = await fetch("/api/email-registration", {
@@ -27,8 +35,9 @@ export const EventCard = ({ data }) => {
         throw new Error(`Error: ${responce.status}`);
       }
       const data = await responce.json();
+      setMessage(data.message);
 
-      console.log("POST", data)
+      console.log("POST", data);
     } catch (e) {}
   };
 
@@ -52,6 +61,8 @@ export const EventCard = ({ data }) => {
           Register Now
         </button>
       </form>
+      <br/>
+      <h6>{message}</h6>
     </div>
   );
 };

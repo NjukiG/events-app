@@ -24,13 +24,18 @@ export default function handler(req, res) {
   if (method === "POST") {
     const { email, eventId } = req.body;
 
+    if (!email || !email.includes("@")) {
+      res.status(422).json({ message: "Invalid email entry!" });
+      return;
+    }
+
     const newAllEvents = allEvents.map((event) => {
       if (event.id === eventId) {
         if (event.emails_registered.includes(email)) {
           res
             .status(201)
             .json({ message: "THis email is already registered!" });
-            return event
+          return event;
         }
         return {
           ...event,
@@ -46,7 +51,7 @@ export default function handler(req, res) {
     );
 
     res.status(200).json({
-      message: `You have been registered successfully with the email: ${email} to the event ${eventId}`,
+      message: `You have been registered successfully with the email: ${email} to the event ${eventId}.`,
     });
   }
 }
