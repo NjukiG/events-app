@@ -30,6 +30,7 @@ export default function handler(req, res) {
           res
             .status(201)
             .json({ message: "THis email is already registered!" });
+            return event
         }
         return {
           ...event,
