@@ -6,25 +6,26 @@ export const HomePage = ({ data }) => {
     <div className="home_body">
       {data?.map((event) => (
         <Link
+          className="card"
           key={event.id}
           href={`/events/${event.id}`}
-          passHref
-          legacyBehavior
+          // passHref
+          // legacyBehavior
         >
-          <a className="card" href={`/events/${event.id}`}>
-            <div className="image">
-              <Image
-                src={event.image}
-                alt={event.title}
-                width={500}
-                height={400}
-              />
-            </div>
-            <div className="content">
-              <h2>{event.title}</h2>
-              <p>{event.description}</p>
-            </div>
-          </a>
+          {/* <a className="card" href={`/events/${event.id}`}> */}
+          <div className="image">
+            <Image
+              src={event.image}
+              alt={event.title}
+              width={500}
+              height={400}
+            />
+          </div>
+          <div className="content">
+            <h2>{event.title}</h2>
+            <p>{event.description}</p>
+          </div>
+          {/* </a> */}
         </Link>
       ))}
     </div>
